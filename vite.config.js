@@ -1,5 +1,7 @@
 import { defineConfig } from "vite"
 import { resolve } from "path"
+import { createHtmlPlugin } from 'vite-plugin-html'
+
 
 export default defineConfig({
     root: resolve("src"),
@@ -14,4 +16,15 @@ export default defineConfig({
             },
         }
     },
+    plugins: [
+        createHtmlPlugin({
+            minify: true,
+            inject: {
+              data: {
+                title: 'index',
+                injectScript: `<script type="module" src="./js/index.js" prefer></script>`,
+              },
+            },
+          }),
+    ],
 })
